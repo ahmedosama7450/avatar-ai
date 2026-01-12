@@ -1,0 +1,126 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #e0f7fa;
+}
+#ui-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  box-sizing: border-box;
+}
+#api-key-container,
+#chat-container {
+  pointer-events: auto;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
+#container {
+  width: 100%;
+  height: 350px;
+  background: transparent;
+  margin-bottom: 0;
+}
+.bubble {
+  background: #fff;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  text-align: left;
+  font-size: 1.1em;
+  border: 2px solid #b2ebf2;
+  color: #333;
+  position: relative;
+}
+.bubble::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 10px 10px 10px;
+  border-style: solid;
+  border-color: transparent transparent #b2ebf2 transparent;
+}
+#user-input-area {
+  display: flex;
+  gap: 10px;
+}
+#user-input {
+  flex-grow: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+#send-btn,
+#save-api-key {
+  padding: 10px 20px;
+  border: none;
+  background: #00bcd4;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+#send-btn:hover,
+#save-api-key:hover {
+  background: #00acc1;
+}
+.secondary-btn {
+  background: #607d8b !important;
+}
+.secondary-btn:hover {
+  background: #546e7a !important;
+}
+.secondary-btn.active {
+  background: #f44336 !important;
+}
+#avatar-bubble {
+  min-height: 20px;
+}
+.voice-status-hidden {
+  display: none;
+}
+#voice-status {
+  padding: 10px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: bold;
+  color: #555;
+}
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #f44336;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(244, 67, 54, 0.5);
+}
+.listening .status-dot {
+  background-color: #4caf50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.8);
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 1; }
+}
