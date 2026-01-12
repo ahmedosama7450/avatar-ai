@@ -53,14 +53,11 @@ window.addEventListener("resize", () => {
 console.log("Three.js scene initialized");
 
 // UI Logic
-let apiKey = "";
-const apiKeyContainer = document.getElementById("api-key-container");
+let apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
 const chatContainer = document.getElementById("chat-container");
 const avatarBubble = document.getElementById("avatar-bubble");
 const userInput = document.getElementById("user-input");
 const sendBtn = document.getElementById("send-btn");
-const saveKeyBtn = document.getElementById("save-api-key");
-const keyInput = document.getElementById("api-key-input");
 const voiceToggleBtn = document.getElementById("voice-toggle-btn");
 const voiceStatus = document.getElementById("voice-status");
 const voiceStatusText = document.getElementById("voice-status-text");
@@ -68,24 +65,13 @@ const voiceStatusText = document.getElementById("voice-status-text");
 let isVoiceMode = false;
 let recognition = null;
 
-saveKeyBtn.addEventListener("click", () => {
-  const key = keyInput.value.trim();
-  if (key) {
-    apiKey = key;
-    apiKeyContainer.style.display = "none";
-    chatContainer.style.display = "block";
-
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-    renderer.setSize(width, height);
-
-    startInteraction();
-  } else {
-    alert("Please enter a valid API key.");
-  }
-});
+if (apiKey) {
+  chatContainer.style.display = "block";
+  startInteraction();
+} else {
+  console.error("VITE_GEMINI_API_KEY is not defined in environment variables.");
+  alert("Gemini API key is missing. Please check your .env file.");
+}
 
 function updateAvatarBubble(text) {
   avatarBubble.textContent = text;
